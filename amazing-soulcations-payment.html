@@ -124,24 +124,24 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
 <style id="v11-payment-layout">
 .payment-methods{
   display:grid!important;
-  grid-template-columns:1fr 1fr!important;
+  grid-template-columns:repeat(3,1fr)!important;
   gap:16px!important;
 }
-.payment-methods .method:nth-child(3){
+.payment-methods .method:nth-child(4){
   grid-column:1 / -1!important;
   padding:24px!important;
 }
-.payment-methods .method:nth-child(3) .checkout-choice{
+.payment-methods .method:nth-child(4) .checkout-choice{
   grid-template-columns:1fr 1fr!important;
 }
 @media(max-width:760px){
   .payment-methods{
     grid-template-columns:1fr!important;
   }
-  .payment-methods .method:nth-child(3){
+  .payment-methods .method:nth-child(4){
     grid-column:auto!important;
   }
-  .payment-methods .method:nth-child(3) .checkout-choice{
+  .payment-methods .method:nth-child(4) .checkout-choice{
     grid-template-columns:1fr!important;
   }
 }
@@ -224,20 +224,18 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
         <div class="field">
           <label for="trip">Trip</label>
           <select id="trip">
-            <option value="namaste">Namaste Bali 2027 - Lee Ann Somers</option>
+            <option value="discover">Discover Thailand 2027</option>
             <option value="divebali">Dive Bali 2027</option>
-            <option value="thailand">Thailand 2027</option>
+            <option value="namaste">Namaste Bali 2027</option>
+            <option value="thailand">Thailand Adventure 2027</option>
             <option value="custom">Custom / Private Group Journey</option>
             <option value="other">Other Amazing Soulcations Trip</option>
           </select>
         </div>
         <div class="field">
-          <label for="paymentType">Payment type</label>
-          <select id="paymentType">
-            <option>Early Registration Deposit</option>
-            <option>Full Payment</option>
-            <option>Final Balance</option>
-            <option>Other Amount / Installment</option>
+          <label for="paymentOption">Payment option</label>
+          <select id="paymentOption">
+            <option>Loading payment options…</option>
           </select>
         </div>
         <div class="field"><label>Traveler full name</label><input></div>
@@ -250,7 +248,7 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
         <strong>Initial deposit acknowledgment</strong>
         <label style="display:flex;gap:9px;align-items:flex-start;margin:10px 0 0;font-weight:500">
           <input id="payDepositAck" type="checkbox" style="width:auto;margin-top:4px">
-          <span><strong>I understand and agree that the initial trip deposit is non-refundable.</strong> Any outstanding documents may be submitted later by the applicable deadline; that does not change the non-refundable status of the deposit, subject to the applicable Refund Policy and any rights required by law.</span>
+          <span><strong>I understand and agree that the initial trip deposit is non-refundable but transferable to another guest.</strong> Any outstanding documents may be submitted later by the applicable deadline; that does not change the deposit terms, subject to the applicable Refund Policy and any rights required by law.</span>
         </label>
       </div>
 
@@ -266,7 +264,7 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
 
     <section>
       <div class="kicker">Choose a payment method</div>
-      <div class="notice" style="margin-bottom:16px">For credit-card / PayPal payments, this page calculates the additional 3.5% processing surcharge for you. Enter the resulting total at checkout.</div>
+      <div class="notice" style="margin-bottom:16px">Square checkout links show the exact amount for the option you select, including the 3.5% credit-card processing charge.</div>
       <h2 style="font:500 2rem Georgia,serif;color:var(--navy);margin:.3rem 0 1.1rem">How would you like to pay?</h2>
       <div class="payment-methods">
         <div class="method">
@@ -277,6 +275,13 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
         </div>
 
         <div class="method">
+          <h3>Pay by Venmo</h3>
+          <p>Pay Amazing Soulcations through our verified Venmo business profile.</p>
+          <button type="button" class="btn zelle" id="venmoBtn">VIEW VENMO DETAILS</button>
+          <div id="venmoDetails" class="details hidden"></div>
+        </div>
+
+        <div class="method">
           <h3>Pay by Check</h3>
           <p>No credit-card surcharge. Mail checks and correspondence to the address shown below.</p>
           <button type="button" class="btn check" id="checkBtn">VIEW CHECK DETAILS</button>
@@ -284,20 +289,13 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
         </div>
 
         <div class="method">
-          <h3>Pay by Credit Card / PayPal</h3>
-          <p class="surcharge">A 3.5% credit-card processing surcharge is added to credit-card payments.</p>
-          <div class="field" style="margin-top:8px">
-            <label for="baseAmount">Payment amount before surcharge</label>
-            <input id="baseAmount" type="number" min="0" step="0.01" placeholder="Enter amount due">
-          </div>
-          <div id="cardCalc" class="details">
-            Enter the amount due to see the 3.5% surcharge and total.
-          </div>
+          <h3>Pay by Credit Card</h3>
+          <p class="surcharge">Your selected Square checkout includes the 3.5% credit-card processing charge.</p>
+          <div id="squareAmount" class="details">Select a payment option to see your total.</div>
           <div class="checkout-choice" style="display:grid;gap:10px;margin-top:12px">
-            <a class="btn cardpay" id="asCheckout" href="https://www.paypal.com/ncp/payment/X52H468ND8W3S" target="_blank" rel="noopener" style="cursor:pointer;background:var(--navy)">AMAZING SOULCATIONS CHECKOUT</a>
-            <span class="btn cardpay" id="leeannCheckout" style="background:var(--gold);color:#111;cursor:not-allowed">BEING U / LEE ANN CHECKOUT - COMING SOON</span>
+            <a class="btn cardpay" id="squareCheckout" href="#" target="_blank" rel="noopener" style="cursor:pointer;background:var(--navy)">CONTINUE TO SECURE SQUARE CHECKOUT</a>
           </div>
-          <div id="cardNote" class="details">Use the checkout that matches your trip. Enter the <strong>Total to enter at checkout</strong> shown above.</div>
+          <div id="cardNote" class="details">Your payment will be processed securely through Square.</div>
         </div>
       </div>
     </section>
@@ -306,100 +304,95 @@ footer{background:var(--navy);color:white;text-align:center;padding:28px 18px;bo
 
 <script>
 const paymentData = {
-  namaste: {
-    label: "Namaste Bali 2027",
-    recipient: "Lee Ann Somers",
-    zelle: "954-665-6193",
-    checkPayee: "Lee Ann Somers",
-    address: "261 SW 7th Street, Dania Beach, FL 33004"
-  },
-  divebali: {
-    label: "Dive Bali 2027",
-    recipient: "Amazing Soulcations",
-    zelle: "954-651-0842",
-    checkPayee: "David Rivley",
-    address: "261 SW 7th Street, Dania Beach, FL 33004"
-  },
-  thailand: {
-    label: "Thailand 2027",
-    recipient: "Amazing Soulcations",
-    zelle: "954-651-0842",
-    checkPayee: "David Rivley",
-    address: "261 SW 7th Street, Dania Beach, FL 33004"
-  },
-  custom: {
-    label: "Custom / Private Group Journey",
-    recipient: "Amazing Soulcations",
-    zelle: "954-651-0842",
-    checkPayee: "David Rivley",
-    address: "261 SW 7th Street, Dania Beach, FL 33004"
-  },
-  other: {
-    label: "Other Amazing Soulcations Trip",
-    recipient: "Amazing Soulcations",
-    zelle: "954-651-0842",
-    checkPayee: "David Rivley",
-    address: "261 SW 7th Street, Dania Beach, FL 33004"
-  }
+  discover: { label: "Discover Thailand 2027", recipient: "Amazing Soulcations", zelle: "954-651-0842", checkPayee: "David Rively", address: "261 SW 7th Street, Dania Beach, FL 33004", options: [
+    ["$2,000 Deposit", "$2,070.00", "https://square.link/u/vVFCzHYq", true],
+    ["Early Access Double, Paid in Full", "$5,485.50", "https://square.link/u/1tI7y3Kf"],
+    ["Early Access Single, Paid in Full", "$6,313.50", "https://square.link/u/DAH0MmzL"],
+    ["Standard Double, Paid in Full", "$6,003.00", "https://square.link/u/youXBA5P"],
+    ["Standard Single, Paid in Full", "$6,831.00", "https://square.link/u/KmZTaTQ0"]
+  ]},
+  divebali: { label: "Dive Bali 2027", recipient: "Amazing Soulcations", zelle: "954-651-0842", checkPayee: "David Rively", address: "261 SW 7th Street, Dania Beach, FL 33004", options: [
+    ["Early Registration Deposit", "$2,070.00", "https://square.link/u/86ul1k7z", true],
+    ["Early Registration Double, Paid in Full", "$6,003.00", "https://square.link/u/HQHgEENu"],
+    ["Early Registration Single, Paid in Full", "$6,831.00", "https://square.link/u/TqUaaco7"],
+    ["Standard Double, Paid in Full", "$7,038.00", "https://square.link/u/1GOV9rmY"],
+    ["Standard Single, Paid in Full", "$7,866.00", "https://square.link/u/pLrcq0Ne"]
+  ]},
+  namaste: { label: "Namaste Bali 2027", recipient: "Amazing Soulcations", zelle: "954-651-0842", checkPayee: "David Rively", address: "261 SW 7th Street, Dania Beach, FL 33004", options: [
+    ["Early Registration Deposit", "$2,070.00", "https://square.link/u/jMOadp24", true],
+    ["Early Registration Double, Paid in Full", "$4,864.50", "https://square.link/u/0dzx4LvV"],
+    ["Early Registration Single, Paid in Full", "$5,692.50", "https://square.link/u/lZV5qpcb"],
+    ["Standard Double, Paid in Full", "$5,899.50", "https://square.link/u/AnYVfEtW"],
+    ["Standard Single, Paid in Full", "$6,727.50", "https://square.link/u/nESrqoxB"]
+  ]},
+  thailand: { label: "Thailand Adventure 2027", recipient: "Amazing Soulcations", zelle: "954-651-0842", checkPayee: "David Rively", address: "261 SW 7th Street, Dania Beach, FL 33004", options: [
+    ["$2,000 Deposit", "$2,070.00", "https://square.link/u/Bevw0nbm", true],
+    ["Priority Access Double, Paid in Full", "$6,468.75", "https://square.link/u/srpc0pMy"],
+    ["Priority Access Single, Paid in Full", "$7,245.00", "https://square.link/u/WYWnwhJd"],
+    ["Open Enrollment Double, Paid in Full", "$6,986.25", "https://square.link/u/xrKttjN1"],
+    ["Open Enrollment Single, Paid in Full", "$7,762.50", "https://square.link/u/9MCV1T7V"],
+    ["Late Enrollment Double, Paid in Full", "$7,503.75", "https://square.link/u/U6Ra5D0t"],
+    ["Late Enrollment Single, Paid in Full", "$8,280.00", "https://square.link/u/7J5eYhuk"]
+  ]},
+  custom: { label: "Custom / Private Group Journey", recipient: "Amazing Soulcations", zelle: "954-651-0842", checkPayee: "David Rively", address: "261 SW 7th Street, Dania Beach, FL 33004", options: [] },
+  other: { label: "Other Amazing Soulcations Trip", recipient: "Amazing Soulcations", zelle: "954-651-0842", checkPayee: "David Rively", address: "261 SW 7th Street, Dania Beach, FL 33004", options: [] }
 };
 
 const trip = document.getElementById('trip');
+const paymentOption = document.getElementById('paymentOption');
 const recipientBox = document.getElementById('recipientBox');
 const zelleBtn = document.getElementById('zelleBtn');
+const venmoBtn = document.getElementById('venmoBtn');
 const checkBtn = document.getElementById('checkBtn');
 const zelleDetails = document.getElementById('zelleDetails');
+const venmoDetails = document.getElementById('venmoDetails');
 const checkDetails = document.getElementById('checkDetails');
+const squareCheckout = document.getElementById('squareCheckout');
+const squareAmount = document.getElementById('squareAmount');
+const cardNote = document.getElementById('cardNote');
+const depositAcknowledgment = document.getElementById('payDepositAck').closest('.notice');
 
 function selectedData(){ return paymentData[trip.value]; }
+function selectedOption(){ return selectedData().options[paymentOption.selectedIndex]; }
+function moneyText(option){ return `<strong>${option[0]}</strong><br><strong>Total due by credit card:</strong> ${option[1]}`; }
 
-const baseAmount = document.getElementById('baseAmount');
-const cardCalc = document.getElementById('cardCalc');
-const asCheckout = document.getElementById('asCheckout');
-const leeannCheckout = document.getElementById('leeannCheckout');
-const cardNote = document.getElementById('cardNote');
-
-const PAYPAL_AMAZING_SOULCATIONS = "https://www.paypal.com/ncp/payment/X52H468ND8W3S";
-
-function updateCardPayment(){
-  const d = selectedData();
-  const amount = parseFloat(baseAmount.value || "0");
-
-  if (amount > 0){
-    const fee = amount * 0.035;
-    const total = amount + fee;
-    cardCalc.innerHTML =
-      `<strong>Payment:</strong> $${amount.toFixed(2)}<br>` +
-      `<strong>3.5% surcharge:</strong> $${fee.toFixed(2)}<br>` +
-      `<strong>Total to enter at checkout:</strong> $${total.toFixed(2)}`;
-  } else {
-    cardCalc.innerHTML = "Enter the amount due to see the 3.5% surcharge and total.";
+function updatePaymentOption(){
+  const option = selectedOption();
+  if (!option){
+    squareCheckout.href = '#';
+    squareCheckout.style.opacity = '.45';
+    squareCheckout.style.pointerEvents = 'none';
+    squareAmount.innerHTML = 'Contact us for a Square invoice or custom payment plan.';
+    cardNote.innerHTML = 'For a remaining balance or installment, we will send you a personalized Square invoice.';
+    depositAcknowledgment.classList.add('hidden');
+    return;
   }
-
-  if (trip.value === "namaste"){
-    asCheckout.style.opacity = "0.45";
-    asCheckout.style.pointerEvents = "none";
-    leeannCheckout.style.opacity = "1";
-    cardNote.innerHTML = "For Namaste Bali / Lee Ann trips, use <strong>BEING U / LEE ANN CHECKOUT</strong> once her payment link is connected. Enter the <strong>Total to enter at checkout</strong> shown above.";
-  } else {
-    asCheckout.style.opacity = "1";
-    asCheckout.style.pointerEvents = "auto";
-    leeannCheckout.style.opacity = "0.45";
-    cardNote.innerHTML = "For Amazing Soulcations trips, use <strong>AMAZING SOULCATIONS CHECKOUT</strong>. Enter the <strong>Total to enter at checkout</strong> shown above.";
-  }
+  squareCheckout.href = option[2];
+  squareCheckout.style.opacity = '1';
+  squareCheckout.style.pointerEvents = 'auto';
+  squareAmount.innerHTML = moneyText(option);
+  cardNote.innerHTML = 'Your payment will be processed securely through Square. The total shown already includes the 3.5% credit-card processing charge.';
+  depositAcknowledgment.classList.toggle('hidden', !option[3]);
 }
 
 function refresh(){
   const d = selectedData();
+  paymentOption.innerHTML = d.options.length
+    ? d.options.map(option => `<option>${option[0]} — ${option[1]}</option>`).join('')
+    : '<option>Contact us for a custom payment</option>';
   recipientBox.innerHTML = `<strong>You are paying for:</strong> ${d.label}<br><strong>Payment recipient:</strong> ${d.recipient}`;
-  zelleDetails.innerHTML = `<strong>Zelle recipient:</strong> ${d.recipient}<br><strong>Zelle:</strong> ${d.zelle}<br><br>Please include the traveler's full name and trip name in the memo.`;
-  checkDetails.innerHTML = `<strong>Make check payable to:</strong> ${d.checkPayee}<br><strong>Mail to:</strong><br>Amazing Soulcations<br>${d.address}<br><br>Please write the traveler\'s full name and trip name on the memo line.`;
+  zelleDetails.innerHTML = `<strong>Zelle recipient:</strong> ${d.recipient}<br><strong>Zelle:</strong> ${d.zelle}<br><br>Please include the traveler\'s full name, trip name, and payment type in the memo.`;
+  venmoDetails.innerHTML = `<strong>Venmo business profile:</strong> @AmazingSoulcations<br><strong>Recipient:</strong> Amazing Soulcations<br><br>Please contact us to confirm the correct Venmo amount before sending a balance or installment. Include the traveler\'s full name, trip name, and payment type in the note.`;
+  checkDetails.innerHTML = `<strong>Make check payable to:</strong> ${d.checkPayee}<br><strong>Mail to:</strong><br>Amazing Soulcations<br>${d.address}<br><br>Please write the traveler\'s full name, trip name, and payment type on the memo line.`;
   zelleDetails.classList.add('hidden');
+  venmoDetails.classList.add('hidden');
   checkDetails.classList.add('hidden');
-  updateCardPayment();
+  updatePaymentOption();
 }
 trip.addEventListener('change', refresh);
-baseAmount.addEventListener('input', updateCardPayment);
+paymentOption.addEventListener('change', updatePaymentOption);
 zelleBtn.addEventListener('click', ()=>zelleDetails.classList.toggle('hidden'));
+venmoBtn.addEventListener('click', ()=>venmoDetails.classList.toggle('hidden'));
 checkBtn.addEventListener('click', ()=>checkDetails.classList.toggle('hidden'));
 refresh();
 </script>
