@@ -954,7 +954,7 @@
 <p class="pricing-note"><strong style="color:var(--gold-light);">All prices are per person.</strong> &nbsp;|&nbsp; <strong style="color:var(--gold-light);">Double Occupancy</strong> = you share a room with one other guest. &nbsp;|&nbsp; <strong style="color:var(--gold-light);">Single Occupancy</strong> = your own private room.</p>
 <div class="pricing-tiers">
   <div class="tier featured">
-    <p class="tier-label">⭐ Priority Access</p><p class="tier-date">Book by August 31, 2026</p>
+    <p class="tier-label">Priority Access · CLOSED</p><p class="tier-date">No longer available</p>
     <p class="tier-price-label">Double</p><p class="tier-price"><sup>$</sup>6,250</p>
     <div class="tier-divider"></div>
     <p class="tier-price-label">Single</p><p class="tier-price"><sup>$</sup>7,000</p>
@@ -985,7 +985,7 @@
 
 <!-- PRICING CTA -->
 <div style="text-align:center;padding:52px 60px;background:var(--navy);border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);">
-  <p style="font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Priority Access Pricing Ends July 31, 2026</p>
+  <p style="font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Priority Access Closed · Open Enrollment Available</p>
   <a href="#register" style="display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--navy);padding:20px 52px;font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 30px rgba(201,168,76,0.35);">Apply for Your Spot &nbsp;→</a>
   <p style="font-size:12px;color:var(--cream);opacity:0.55;margin-top:14px;letter-spacing:1px;">It starts with a conversation. No commitment, no pressure.</p>
 </div>
@@ -1159,35 +1159,39 @@
   <h2 class="section-title">Ready to Join<br><em>the Adventure?</em></h2>
   <p style="font-size:17px;line-height:1.9;color:var(--cream);max-width:680px;margin-bottom:8px;">Fill out the form below and Kevin or David will be in touch within 24 hours to answer your questions and walk you through next steps. <strong style="color:var(--white);">Submitting this form does not commit you to payment.</strong> It simply starts the conversation.</p>
   <p style="font-size:14px;line-height:1.9;color:var(--gold-light);max-width:680px;margin-bottom:24px;font-style:italic;">All deposits, payments, and administrative matters are handled by David. Kevin focuses on the experience — David handles everything behind the scenes so the process is seamless for you.</p>
-  <div class="reg-form">
+  <form class="reg-form" id="kevin-inquiry-form" action="https://formspree.io/f/xqernnnl" method="POST">
+    <input type="hidden" name="_subject" value="Kevin Lee Thailand 2027 - New Trip Inquiry">
+    <input type="hidden" name="trip" value="Kevin Lee Thailand Adventure - January 26 to February 8, 2027">
+    <input type="hidden" name="source_page" value="https://amazingsoulcations.com/kevin-thailand-2027.html">
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
     <div class="form-field">
-      <label class="form-label">First Name</label>
-      <input type="text" class="form-input" placeholder="Your first name">
+      <label class="form-label" for="kevin-first_name">First Name</label>
+      <input id="kevin-first_name" name="first_name" autocomplete="given-name" required type="text" class="form-input" placeholder="Your first name">
     </div>
     <div class="form-field">
-      <label class="form-label">Last Name</label>
-      <input type="text" class="form-input" placeholder="Your last name">
+      <label class="form-label" for="kevin-last_name">Last Name</label>
+      <input id="kevin-last_name" name="last_name" autocomplete="family-name" required type="text" class="form-input" placeholder="Your last name">
     </div>
     <div class="form-field">
-      <label class="form-label">Email Address</label>
-      <input type="email" class="form-input" placeholder="Your email address">
+      <label class="form-label" for="kevin-email">Email Address</label>
+      <input id="kevin-email" name="email" autocomplete="email" required type="email" class="form-input" placeholder="Your email address">
     </div>
     <div class="form-field">
-      <label class="form-label">Phone Number</label>
-      <input type="tel" class="form-input" placeholder="Your phone number">
+      <label class="form-label" for="kevin-phone">Phone Number</label>
+      <input id="kevin-phone" name="phone" autocomplete="tel" type="tel" class="form-input" placeholder="Your phone number">
     </div>
     <div class="form-field">
-      <label class="form-label">Room Preference</label>
-      <select class="form-select">
+      <label class="form-label" for="kevin-room_preference">Room Preference</label>
+      <select id="kevin-room_preference" name="room_preference" required class="form-select">
         <option value="">Select your preference</option>
-        <option>Double Occupancy: Shared Room ($6,250 Priority)</option>
-        <option>Single Occupancy: Private Room ($7,000 Priority)</option>
+        <option>Double Occupancy: Shared Room ($6,750 Open Enrollment)</option>
+        <option>Single Occupancy: Private Room ($7,500 Open Enrollment)</option>
         <option>Not sure yet, I have questions</option>
       </select>
     </div>
     <div class="form-field">
-      <label class="form-label">How Did You Hear About Us?</label>
-      <select class="form-select">
+      <label class="form-label" for="kevin-referral_source">How Did You Hear About Us?</label>
+      <select id="kevin-referral_source" name="referral_source" class="form-select">
         <option value="">Select one</option>
         <option>Friend or referral</option>
         <option>Instagram or social media</option>
@@ -1198,16 +1202,17 @@
       </select>
     </div>
     <div class="form-field full">
-      <label class="form-label">Dietary Needs or Special Requests</label>
-      <textarea class="form-textarea" placeholder="Let us know about any dietary restrictions, allergies, mobility needs, or anything else we should know to make your experience perfect."></textarea>
+      <label class="form-label" for="kevin-special_requests">Dietary Needs or Special Requests</label>
+      <textarea id="kevin-special_requests" name="special_requests" class="form-textarea" placeholder="Let us know about any dietary restrictions, allergies, mobility needs, or anything else we should know to make your experience perfect."></textarea>
     </div>
     <div class="form-field full">
-      <label class="form-label">Any Questions for Kevin or David?</label>
-      <textarea class="form-textarea" placeholder="Ask us anything. We're happy to answer before you commit to anything."></textarea>
+      <label class="form-label" for="kevin-questions">Any Questions for Kevin or David?</label>
+      <textarea id="kevin-questions" name="questions" class="form-textarea" placeholder="Ask us anything. We're happy to answer before you commit to anything."></textarea>
     </div>
-    <button class="form-submit" onclick="handleFormSubmit()">Submit My Interest: I Want to Learn More</button>
+    <button class="form-submit" type="submit">Submit My Interest: I Want to Learn More</button>
+    <p id="kevin-form-status" role="status" aria-live="polite" hidden style="grid-column:1/-1;margin:0;color:var(--cream);line-height:1.7;"></p>
     <p class="form-note"><strong style="color:var(--gold-light);">Submitting this form does not reserve your space or require payment.</strong> A $2,000 deposit per person is required to officially secure your spot. For all payments and administrative matters, contact David directly at <strong>1-954-651-0842.</strong> Kevin or David will be in touch within 24 hours.</p>
-  </div>
+  </form>
 </div>
 
 <!-- REFERRAL -->
@@ -1275,10 +1280,42 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // REGISTRATION FORM
-  function handleFormSubmit() {
-    alert('Thank you for your interest in Thailand Adventure 2027!\n\nKevin or David will be in touch within 24 hours.\n\nKevin: 1-754-300-9978\nDavid: 1-954-651-0842\niamKevinLee.com');
-  }
+  // Send inquiries to the existing Amazing Soulcations registration destination.
+  var inquiryForm = document.getElementById('kevin-inquiry-form');
+  inquiryForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (inquiryForm.dataset.submitting === 'true' || !inquiryForm.reportValidity()) return;
+    var button = inquiryForm.querySelector('button[type="submit"]');
+    var status = document.getElementById('kevin-form-status');
+    var originalLabel = button.textContent;
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 20000);
+    inquiryForm.dataset.submitting = 'true';
+    inquiryForm.setAttribute('aria-busy', 'true');
+    button.disabled = true;
+    button.textContent = 'Sending your inquiry…';
+    status.hidden = false;
+    status.textContent = 'Sending your inquiry. Please keep this page open.';
+    try {
+      var response = await fetch(inquiryForm.action, {
+        method: 'POST',
+        body: new FormData(inquiryForm),
+        headers: { 'Accept': 'application/json' },
+        signal: controller.signal
+      });
+      if (!response.ok) throw new Error('Submission rejected');
+      inquiryForm.reset();
+      status.textContent = 'Thank you. Your inquiry has been submitted. Kevin or David will be in touch within 24 hours. For immediate help, call David at 954-651-0842.';
+    } catch (error) {
+      status.textContent = 'We could not confirm your submission. Your information is still here. Please try again, or email info@amazingsoulcations.com or call David at 954-651-0842.';
+    } finally {
+      clearTimeout(timeout);
+      inquiryForm.dataset.submitting = 'false';
+      inquiryForm.removeAttribute('aria-busy');
+      button.disabled = false;
+      button.textContent = originalLabel;
+    }
+  });
 </script>
 <script>document.addEventListener('DOMContentLoaded',function(){var n=document.getElementById('as-dual-nav');var b=n&&n.querySelector('.as-toggle');if(b){b.addEventListener('click',function(){n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open')?'true':'false');});n.querySelectorAll('.as-mobile-menu a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');b.setAttribute('aria-expanded','false');});});}});</script>
 </body>
